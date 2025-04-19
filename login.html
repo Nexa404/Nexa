@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Nexa - تسجيل الدخول</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tajawal:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Poppins', 'Roboto', sans-serif;
+            background-color: #f4f7fa;
+            color: #1a202c;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark Mode */
+        html[data-theme="dark"] body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+
+        html[data-theme="dark"] input,
+        html[data-theme="dark"] select {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border-color: #4a5568;
+        }
+
+        html[data-theme="dark"] input:focus,
+        html[data-theme="dark"] select:focus {
+            border-color: #4299e1;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        html[data-theme="dark"] header {
+            background-color: #2d3748;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            height: 40px;
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2b6cb0;
+        }
+
+        html[data-theme="dark"] h1 {
+            color: #90cdf4;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e0;
+            transition: 0.3s;
+            border-radius: 22px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background-color: #ffffff;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2b6cb0;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        html[data-theme="dark"] .slider {
+            background-color: #4a5568;
+        }
+
+        html[data-theme="dark"] input:checked + .slider {
+            background-color: #4299e1;
+        }
+
+        #theme-toggle {
+            font-size: 0.95rem;
+            color: #4a5568;
+            cursor: default;
+        }
+
+        html[data-theme="dark"] #theme-toggle {
+            color: #a0aec0;
+        }
+
+        #language-toggle {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background-color: #ffffff;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        html[data-theme="dark"] #language-toggle {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+
+        #language-toggle:hover {
+            border-color: #2b6cb0;
+        }
+
+        /* Login Section */
+        .login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px);
+            padding: 2rem 5%;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        html[data-theme="dark"] .login-container {
+            background-color: #2d3748;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.75rem;
+            color: #1a202c;
+        }
+
+        html[data-theme="dark"] .login-container h2 {
+            color: #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: start;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        html[data-theme="dark"] .form-group label {
+            color: #a0aec0;
+        }
+
+        .required {
+            color: #e53e3e;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2b6cb0;
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: #2b6cb0;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-btn:hover {
+            background-color: #2c5282;
+        }
+
+        .form-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.3);
+        }
+
+        .register-link {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        html[data-theme="dark"] .register-link {
+            color: #a0aec0;
+        }
+
+        .register-link a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 5%;
+            background-color: #f4f7fa;
+            border-top: 1px solid #edf2f7;
+        }
+
+        html[data-theme="dark"] footer {
+            background-color: #2d3748;
+            border-top: 1px solid #4a5568;
+        }
+
+        footer p {
+            margin: 0.75rem 0;
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        html[data-theme="dark"] footer p {
+            color: #a0aec0;
+        }
+
+        footer a {
+            color: #2b6cb0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #2c5282;
+        }
+
+        footer .fab {
+            font-size: 1.2rem;
+            margin: 0 0.75rem;
+        }
+
+        /* WhatsApp Icon */
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        html[dir="rtl"] .whatsapp {
+            right: auto;
+            left: 20px;
+        }
+
+        .whatsapp-icon {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.2s ease;
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 65px;
+            background-color: #2d3748;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        html[data-theme="dark"] .whatsapp-tooltip {
+            background-color: #4a5568;
+        }
+
+        .whatsapp:hover .whatsapp-tooltip {
+            display: block;
+        }
+
+        /* Notification Bubble */
+        .notification-bubble {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background-color: #2d3748;
+            color: #ffffff;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            max-width: 350px;
+            z-index: 1000;
+        }
+
+        html[dir="rtl"] .notification-bubble {
+            right: auto;
+            left: 20px;
+        }
+
+        .notification-bubble.success {
+            background-color: #38a169;
+        }
+
+        .notification-bubble.error {
+            background-color: #e53e3e;
+        }
+
+        .notification-bubble.info {
+            background-color: #2b6cb0;
+        }
+
+        .notification-close {
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .notification-close:hover {
+            color: #edf2f7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1rem 3%;
+            }
+
+            .header-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.75rem;
+            }
+
+            .login-container {
+                padding: 2rem;
+                max-width: 95%;
+            }
+
+            .whatsapp-icon {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                height: 36px;
+            }
+
+            .login-container h2 {
+                font-size: 1.75rem;
+            }
+
+            .form-group input,
+            .form-btn {
+                font-size: 0.95rem;
+            }
+
+            .notification-bubble {
+                max-width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html" title="العودة إلى الصفحة الرئيسية" aria-label="Nexa الصفحة الرئيسية">
+                <img src="logo.png" alt="Nexa Logo" class="logo">
+                <h1 id="header-title">Nexa</h1>
+            </a>
+        </div>
+        <nav class="header-actions" aria-label="إعدادات الواجهة">
+            <div class="toggle-switch theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch" onchange="toggleTheme()" aria-label="تبديل الوضع الداكن">
+                    <span class="slider"></span>
+                </label>
+                <span id="theme-toggle">الوضع الداكن</span>
+            </div>
+            <div class="toggle-switch language-toggle">
+                <select onchange="toggleLanguage(this.value)" id="language-toggle" aria-label="اختيار اللغة">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="login" aria-labelledby="login-title">
+            <div class="login-container">
+                <h2 id="login-title">تسجيل الدخول</h2>
+                <form id="login-form" aria-describedby="login-instructions">
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني <span class="required" aria-hidden="true">*</span></label>
+                        <input type="email" id="email" placeholder="example@domain.com" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">كلمة المرور <span class="required" aria-hidden="true">*</span></label>
+                        <input type="password" id="password" placeholder="أدخل كلمة المرور" required aria-required="true">
+                    </div>
+                    <button type="submit" class="form-btn" id="login-submit-btn">تسجيل الدخول</button>
+                </form>
+                <p class="register-link" id="register-link">ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p id="footer-contact">تواصل معنا: <a href="mailto:support@nexa.com">support@nexa.com</a> | <a href="tel:+201142540575">+201142540575</a></p>
+        <p id="footer-social">تابعنا: 
+            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+        </p>
+        <p id="footer-copyright">© 2025 Nexa. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <div class="whatsapp" role="button">
+        <a href="https://wa.me/+201142540575" target="_blank" title="تواصل عبر واتساب" aria-label="تواصل عبر واتساب">
+            <img src="whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
+            <span class="whatsapp-tooltip">تواصل معنا</span>
+        </a>
+    </div>
+
+    <div class="notification-bubble" id="notification-bubble" role="alert">
+        <span class="notification-close" onclick="closeNotification()" aria-label="إغلاق الإشعار">×</span>
+        <p id="notification-message"></p>
+    </div>
+
+    <script>
+        const content = {
+            ar: {
+                pageTitle: "Nexa - تسجيل الدخول",
+                headerTitle: "Nexa",
+                themeToggle: "الوضع الداكن",
+                loginTitle: "تسجيل الدخول",
+                emailLabel: "البريد الإلكتروني",
+                passwordLabel: "كلمة المرور",
+                loginSubmitBtn: "تسجيل الدخول",
+                registerLink: 'ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a>',
+                footerContact: 'تواصل معنا: <a href="mailto:support@nexa.com">support@nexa.com</a> | <a href="tel:+201142540575">+201142540575</a>',
+                footerSocial: 'تابعنا: <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a> <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a> <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>',
+                footerCopyright: "© 2025 Nexa. جميع الحقوق محفوظة.",
+                loginSuccessMessage: "تم تسجيل الدخول بنجاح!",
+                loginErrorMessage: "يرجى ملء جميع الحقول المطلوبة!",
+                invalidEmailMessage: "البريد الإلكتروني غير صالح!",
+                invalidPasswordMessage: "كلمة المرور غير صحيحة أو الحساب غير موجود!",
+                alreadyLoggedInMessage: "أنت بالفعل مسجل الدخول!"
+            },
+            en: {
+                pageTitle: "Nexa - Login",
+                headerTitle: "Nexa",
+                themeToggle: "Dark Mode",
+                loginTitle: "Login",
+                emailLabel: "Email Address",
+                passwordLabel: "Password",
+                loginSubmitBtn: "Login",
+                registerLink: 'Don’t have an account? <a href="register.html">Create one</a>',
+                footerContact: 'Contact Us: <a href="mailto:support@nexa.com">support@nexa.com</a> | <a href="tel:+201142540575">+201142540575</a>',
+                footerSocial: 'Follow Us: <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>',
+                footerCopyright: "© 2025 Nexa. All Rights Reserved.",
+                loginSuccessMessage: "Login successful!",
+                loginErrorMessage: "Please fill all required fields!",
+                invalidEmailMessage: "Invalid email address!",
+                invalidPasswordMessage: "Incorrect password or account does not exist!",
+                alreadyLoggedInMessage: "You are already logged in!"
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('language') || 'ar';
+        const notificationBubble = document.getElementById('notification-bubble');
+        const notificationMessage = document.getElementById('notification-message');
+        const loginForm = document.getElementById('login-form');
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeSwitch = document.getElementById('theme-switch');
+            
+            if (!themeToggle || !themeSwitch) {
+                console.error('Theme toggle elements not found');
+                return;
+            }
+
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? '' : 'dark');
+            themeToggle.textContent = isDark ? content[currentLanguage].themeToggle : (currentLanguage === 'ar' ? 'الوضع الفاتح' : 'Light Mode');
+            themeSwitch.checked = !isDark;
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        function toggleLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            const html = document.getElementById('html-root');
+            
+            if (!html) {
+                console.error('HTML root element not found');
+                return;
+            }
+
+            html.setAttribute('lang', lang);
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+            const elements = {
+                'page-title': 'pageTitle',
+                'header-title': 'headerTitle',
+                'theme-toggle': 'themeToggle',
+                'login-title': 'loginTitle',
+                'login-submit-btn': 'loginSubmitBtn',
+                'register-link': 'registerLink',
+                'footer-contact': 'footerContact',
+                'footer-social': 'footerSocial',
+                'footer-copyright': 'footerCopyright'
+            };
+
+            Object.keys(elements).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = content[lang][elements[id]];
+                }
+            });
+
+            document.querySelector('label[for="email"]').innerHTML = content[lang].emailLabel + ' <span class="required" aria-hidden="true">*</span>';
+            document.querySelector('label[for="password"]').innerHTML = content[lang].passwordLabel + ' <span class="required" aria-hidden="true">*</span>';
+
+            const langSelect = document.getElementById('language-toggle');
+            if (langSelect) langSelect.value = lang;
+
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.getElementById('theme-toggle').textContent = lang === 'ar' ? 'الوضع الفاتح' : 'Light Mode';
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            if (!notificationBubble || !notificationMessage) {
+                console.error('Notification elements not found');
+                return;
+            }
+
+            notificationMessage.textContent = message;
+            notificationBubble.className = `notification-bubble ${type}`;
+            notificationBubble.style.display = 'flex';
+            notificationBubble.setAttribute('aria-live', 'assertive');
+            
+            setTimeout(() => {
+                closeNotification();
+            }, 4000);
+        }
+
+        function closeNotification() {
+            if (notificationBubble) {
+                notificationBubble.style.display = 'none';
+                notificationBubble.setAttribute('aria-live', 'off');
+            }
+        }
+
+        function handleLoginSubmission(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!email || !password) {
+                showNotification(content[currentLanguage].loginErrorMessage, 'error');
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showNotification(content[currentLanguage].invalidEmailMessage, 'error');
+                return;
+            }
+
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                showNotification(content[currentLanguage].alreadyLoggedInMessage, 'info');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+            if (!user) {
+                showNotification(content[currentLanguage].invalidPasswordMessage, 'error');
+                return;
+            }
+
+            localStorage.setItem('currentUser', JSON.stringify({ email }));
+            showNotification(content[currentLanguage].loginSuccessMessage, 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+
+        function initializeTestUsers() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (!users.length) {
+                users.push({
+                    email: 'test@nexa.com',
+                    password: 'password123'
+                });
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                initializeTestUsers();
+
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.getElementById('theme-switch').checked = true;
+                    document.getElementById('theme-toggle').textContent = currentLanguage === 'ar' ? 'الوضع الفاتح' : 'Light Mode';
+                }
+
+                toggleLanguage(currentLanguage);
+
+                if (loginForm) {
+                    loginForm.addEventListener('submit', handleLoginSubmission);
+                }
+
+                const langSelect = document.getElementById('language-toggle');
+                if (langSelect) langSelect.value = currentLanguage;
+
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showNotification(currentLanguage === 'ar' ? 'حدث خطأ أثناء تحميل الصفحة.' : 'An error occurred while loading the page.', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

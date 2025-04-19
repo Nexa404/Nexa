@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">nexa - الدفع</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tajawal:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="back.jpg" alt="nexa Logo" class="logo">
+            <h1 id="header-title">nexs</h1>
+        </div>
+        <div class="header-actions">
+            <div class="toggle-switch">
+                <input type="checkbox" id="theme-switch" onchange="toggleTheme()">
+                <label for="theme-switch" id="theme-toggle">الوضع الداكن</label>
+            </div>
+            <div class="toggle-switch">
+                <select onchange="toggleLanguage(this.value)" id="language-toggle">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <select onchange="toggleCurrency(this.value)" id="currency-toggle">
+                <option value="SAR">ر.س</option>
+                <option value="EGP">ج.م</option>
+                <option value="AED">د.إ</option>
+            </select>
+        </div>
+    </header>
+
+    <section class="checkout">
+        <h2 id="checkout-title">إتمام عملية الدفع</h2>
+        <div class="checkout-container">
+            <div class="cart-summary">
+                <h3 id="cart-summary-title">ملخص السلة</h3>
+                <div id="cart-items"></div>
+                <div class="cart-total" id="cart-total">المجموع: 0.00 ر.س</div>
+            </div>
+            <div class="payment-form">
+                <h3 id="payment-form-title">تفاصيل الدفع</h3>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل <span class="required">*</span></label>
+                        <input type="text" id="name" placeholder="أدخل اسمك الكامل" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+                        <input type="email" id="email" placeholder="example@domain.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">رقم البطاقة <span class="required">*</span></label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="card-details">
+                        <div class="form-group">
+                            <label for="expiry">تاريخ الانتهاء <span class="required">*</span></label>
+                            <input type="text" id="expiry" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV <span class="required">*</span></label>
+                            <input type="text" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="payment-method-label">طريقة الدفع <span class="required">*</span></label>
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="visa" required>
+                                <img src="visa.jpg" alt="فيزا">
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="mastercard">
+                                <img src="master.jpg" alt="ماستركارد">
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="applepay">
+                                <img src="apple.jpg" alt="آبل باي">
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="stcpay">
+                                <img src="stc.jpg" alt="STC Pay">
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-btn" id="confirm-payment-btn">تأكيد الدفع</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p id="footer-contact">تواصل معنا: <a href="mailto:support@accessflex.com">support@accessflex.com</a> | <a href="tel:+201142540575">+201142540575</a></p>
+        <p id="footer-social">تابعنا: 
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </p>
+        <p id="footer-copyright">© 2025 nexa. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <div class="whatsapp">
+        <a href="https://wa.me/+201142540575" target="_blank" title="تواصل عبر واتساب">
+            <img src="whatsapp.png" alt="WhatsApp">
+        </a>
+    </div>
+
+    <div class="notification-popup" id="notification-popup">
+        <div class="notification-content">
+            <span class="notification-close" onclick="closeNotification()">×</span>
+            <p id="notification-message"></p>
+            <button class="notification-btn" onclick="closeNotification()">موافق</button>
+        </div>
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

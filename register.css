@@ -1,0 +1,487 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tajawal', 'Poppins', 'Roboto', sans-serif;
+    background-color: #f7f9fc;
+    color: #2d3748;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode */
+html[data-theme="dark"] body {
+    background-color: #1f252e;
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] select {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-color: #4a5568;
+}
+
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] select:focus {
+    border-color: #63b3ed;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+html[data-theme="dark"] header {
+    background-color: #2d3748;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo {
+    height: 36px;
+    transition: transform 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #3182ce;
+}
+
+html[data-theme="dark"] h1 {
+    color: #90cdf4;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e0;
+    transition: 0.3s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ffffff;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #3182ce;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+html[data-theme="dark"] .slider {
+    background-color: #4a5568;
+}
+
+html[data-theme="dark"] input:checked + .slider {
+    background-color: #63b3ed;
+}
+
+#theme-toggle {
+    font-size: 0.9rem;
+    color: #4a5568;
+    cursor: default;
+}
+
+html[data-theme="dark"] #theme-toggle {
+    color: #a0aec0;
+}
+
+#language-toggle {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+html[data-theme="dark"] #language-toggle {
+    background-color: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+#language-toggle:hover {
+    border-color: #3182ce;
+}
+
+/* Register Section */
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 180px);
+    padding: 2rem 5%;
+}
+
+.register-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+html[data-theme="dark"] .register-container {
+    background-color: #2d3748;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.register-container h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #2d3748;
+}
+
+html[data-theme="dark"] .register-container h2 {
+    color: #e2e8f0;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+    text-align: start;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+
+html[data-theme="dark"] .form-group label {
+    color: #a0aec0;
+}
+
+.required {
+    color: #e53e3e;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.password-strength {
+    height: 4px;
+    margin-top: 0.5rem;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.password-strength.weak {
+    background-color: #e53e3e;
+    width: 33%;
+}
+
+.password-strength.medium {
+    background-color: #f6ad55;
+    width: 66%;
+}
+
+.password-strength.strong {
+    background-color: #38a169;
+    width: 100%;
+}
+
+.form-btn {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #3182ce;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-btn:hover {
+    background-color: #2b6cb0;
+}
+
+.form-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.3);
+}
+
+.login-link {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+html[data-theme="dark"] .login-link {
+    color: #a0aec0;
+}
+
+.login-link a {
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 5%;
+    background-color: #f7f9fc;
+    border-top: 1px solid #edf2f7;
+}
+
+html[data-theme="dark"] footer {
+    background-color: #2d3748;
+    border-top: 1px solid #4a5568;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+html[data-theme="dark"] footer p {
+    color: #a0aec0;
+}
+
+footer a {
+    color: #3182ce;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #2b6cb0;
+}
+
+footer .fab {
+    font-size: 1.1rem;
+    margin: 0 0.5rem;
+}
+
+/* WhatsApp Icon */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+html[dir="rtl"] .whatsapp {
+    right: auto;
+    left: 20px;
+}
+
+.whatsapp-icon {
+    width: 48px;
+    height: 48px;
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    background-color: #2d3748;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .whatsapp-tooltip {
+    background-color: #4a5568;
+}
+
+.whatsapp:hover .whatsapp-tooltip {
+    display: block;
+}
+
+/* Notification Bubble */
+.notification-bubble {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #2d3748;
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    max-width: 320px;
+    z-index: 1000;
+}
+
+html[dir="rtl"] .notification-bubble {
+    right: auto;
+    left: 20px;
+}
+
+.notification-bubble.success {
+    background-color: #38a169;
+}
+
+.notification-bubble.error {
+    background-color: #e53e3e;
+}
+
+.notification-bubble.info {
+    background-color: #3182ce;
+}
+
+.notification-close {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.notification-close:hover {
+    color: #edf2f7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem 3%;
+    }
+
+    .header-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .register-container {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .whatsapp-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .logo {
+        height: 32px;
+    }
+
+    .register-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-group input,
+    .form-btn {
+        font-size: 0.95rem;
+    }
+
+    .notification-bubble {
+        max-width: 80%;
+    }
+}

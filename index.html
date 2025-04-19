@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Nexa - اشتراكات مميزة لخدمات البث</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="main-header" role="banner">
+        <nav class="logo-container">
+            <img src="back.jpg" alt="Nexa Logo" class="logo">
+            <h1 id="header-title">Nexa</h1>
+        </nav>
+        <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+        <div class="header-actions" id="header-actions">
+            <button class="header-btn theme-toggle" onclick="toggleTheme()" id="theme-toggle" aria-label="تبديل الوضع الداكن">الوضع الداكن</button>
+            <div class="custom-select">
+                <select onchange="toggleLanguage(this.value)" id="language-toggle" aria-label="اختيار اللغة">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <div class="custom-select">
+                <select onchange="toggleCurrency(this.value)" id="currency-toggle" aria-label="اختيار العملة">
+                    <option value="SAR">ر.س</option>
+                    <option value="EGP">ج.م</option>
+                    <option value="AED">د.إ</option>
+                </select>
+            </div>
+            <div class="custom-select">
+                <select onchange="toggleSettings(this.value)" id="settings-toggle" aria-label="إعدادات اللغة والعملة">
+                    <option value="ar-SAR">العربية - ر.س</option>
+                    <option value="en-SAR">English - SAR</option>
+                    <option value="ar-EGP">العربية - ج.م</option>
+                    <option value="en-EGP">English - EGP</option>
+                    <option value="ar-AED">العربية - د.إ</option>
+                    <option value="en-AED">English - AED</option>
+                </select>
+            </div>
+            <div class="user-actions">
+                <button class="header-btn" id="login-btn" style="display: none;" onclick="showLogin()" aria-label="تسجيل الدخول">تسجيل الدخول</button>
+                <button class="header-btn" id="logout-btn" style="display: none;" onclick="logout()" aria-label="تسجيل الخروج">تسجيل الخروج</button>
+                <span id="user-greeting" style="color: var(--header-text); margin-left: 10px;"></span>
+            </div>
+            <div class="cart" onclick="showCart()" title="عرض السلة" aria-label="عرض السلة">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18l-2 13H5L3 3zm4 18a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"></path>
+                </svg>
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" role="region" aria-labelledby="hero-title">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h2 id="hero-title">استمتع بأفضل خدمات البث مع Nexa</h2>
+                <p id="hero-subtitle">اشتراكات نتفليكس، سبوتيفاي، ديزني+، وأكثر بأسعار تنافسية</p>
+                <button class="hero-btn" onclick="scrollToPlans()" id="hero-btn" aria-label="تصفح الخطط الآن">تصفح الخطط الآن</button>
+            </div>
+        </section>
+
+        <section class="search-filter" role="search">
+            <input type="text" id="search-bar" placeholder="ابحث عن الخطط (مثل: نتفليكس)" aria-label="البحث عن الاشتراكات">
+            <div class="filter">
+                <label id="filter-label" for="filter-select">فرز حسب: </label>
+                <div class="custom-select">
+                    <select onchange="filterPlans(this.value)" id="filter-select" multiple aria-label="فرز الاشتراكات">
+                        <option value="all">الكل</option>
+                        <option value="netflix">نتفليكس</option>
+                        <option value="spotify">سبوتيفاي</option>
+                        <option value="disney">ديزني+</option>
+                        <option value="youtube">يوتيوب بريميوم</option>
+                        <option value="bundle">الباقات المجمعة</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="plans" id="plans" role="region" aria-labelledby="plans-title">
+            <!-- Netflix Category -->
+            <div class="category" data-category="netflix">
+                <h3 id="netflix-title">اشتراكات نتفليكس</h3>
+                <div class="plan-grid">
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="netflix1.jpg" alt="صورة نتفليكس شهر" loading="lazy">
+                            <span class="label" id="netflix-month-label">مميز</span>
+                        </div>
+                        <h4 id="netflix-month-title">عرض شهر</h4>
+                        <p id="netflix-month-desc">نتفليكس 4K</p>
+                        <div class="price" data-price-sar="13.99" id="netflix-month-price">13.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('netflix-month', 13.99)" id="netflix-month-btn" aria-label="أضف عرض شهر نتفليكس إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan most-popular">
+                        <div class="image-container">
+                            <img src="netflix2.jpg" alt="صورة نتفليكس 3 أشهر" loading="lazy">
+                            <span class="label" id="netflix-3months-label">مميز</span>
+                        </div>
+                        <h4 id="netflix-3months-title">عرض 3 أشهر</h4>
+                        <p id="netflix-3months-desc">نتفليكس 4K</p>
+                        <div class="price" data-price-sar="39.99" id="netflix-3months-price">39.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('netflix-3months', 39.99)" id="netflix-3months-btn" aria-label="أضف عرض 3 أشهر نتفليكس إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="netflix10.jpg" alt="صورة نتفليكس سنة" loading="lazy">
+                            <span class="label" id="netflix-year-label">مميز</span>
+                        </div>
+                        <h4 id="netflix-year-title">عرض سنة</h4>
+                        <p id="netflix-year-desc">نتفليكس 4K</p>
+                        <div class="price" data-price-sar="149.99" id="netflix-year-price">149.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('netflix-year', 149.99)" id="netflix-year-btn" aria-label="أضف عرض سنة نتفليكس إلى السلة">أضف إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spotify Category -->
+            <div class="category" data-category="spotify">
+                <h3 id="spotify-title">اشتراكات سبوتيفاي</h3>
+                <div class="plan-grid">
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="spotify.png" alt="صورة سبوتيفاي شهر" loading="lazy">
+                            <span class="label" id="spotify-month-label">مميز</span>
+                        </div>
+                        <h4 id="spotify-month-title">عرض شهر</h4>
+                        <p id="spotify-month-desc">سبوتيفاي بريميوم</p>
+                        <div class="price" data-price-sar="19.99" id="spotify-month-price">19.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('spotify-month', 19.99)" id="spotify-month-btn" aria-label="أضف عرض شهر سبوتيفاي إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="spotify.png" alt="صورة سبوتيفاي 6 أشهر" loading="lazy">
+                            <span class="label" id="spotify-6months-label">مميز</span>
+                        </div>
+                        <h4 id="spotify-6months-title">عرض 6 أشهر</h4>
+                        <p id="spotify-6months-desc">سبوتيفاي بريميوم</p>
+                        <div class="price" data-price-sar="99.99" id="spotify-6months-price">99.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('spotify-6months', 99.99)" id="spotify-6months-btn" aria-label="أضف عرض 6 أشهر سبوتيفاي إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan most-popular">
+                        <div class="image-container">
+                            <img src="spotify.png" alt="صورة سبوتيفاي سنة" loading="lazy">
+                            <span class="label" id="spotify-year-label">مميز</span>
+                        </div>
+                        <h4 id="spotify-year-title">عرض سنة</h4>
+                        <p id="spotify-year-desc">سبوتيفاي بريميوم</p>
+                        <div class="price" data-price-sar="199.99" id="spotify-year-price">199.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('spotify-year', 199.99)" id="spotify-year-btn" aria-label="أضف عرض سنة سبوتيفاي إلى السلة">أضف إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disney+ Category -->
+            <div class="category" data-category="disney">
+                <h3 id="disney-title">اشتراكات ديزني+</h3>
+                <div class="plan-grid">
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="disney.jpg" alt="صورة ديزني+ شهر" loading="lazy">
+                            <span class="label" id="disney-month-label">مميز</span>
+                        </div>
+                        <h4 id="disney-month-title">عرض شهر</h4>
+                        <p id="disney-month-desc">ديزني+ 4K</p>
+                        <div class="price" data-price-sar="29.99" id="disney-month-price">29.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('disney-month', 29.99)" id="disney-month-btn" aria-label="أضف عرض شهر ديزني+ إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="disney.jpg" alt="صورة ديزني+ 6 أشهر" loading="lazy">
+                            <span class="label" id="disney-6months-label">مميز</span>
+                        </div>
+                        <h4 id="disney-6months-title">عرض 6 أشهر</h4>
+                        <p id="disney-6months-desc">ديزني+ 4K</p>
+                        <div class="price" data-price-sar="149.99" id="disney-6months-price">149.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('disney-6months', 149.99)" id="disney-6months-btn" aria-label="أضف عرض 6 أشهر ديزني+ إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="disney.jpg" alt="صورة ديزني+ سنة" loading="lazy">
+                            <span class="label" id="disney-year-label">مميز</span>
+                        </div>
+                        <h4 id="disney-year-title">عرض سنة</h4>
+                        <p id="disney-year-desc">ديزني+ 4K</p>
+                        <div class="price" data-price-sar="249.99" id="disney-year-price">249.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('disney-year', 249.99)" id="disney-year-btn" aria-label="أضف عرض سنة ديزني+ إلى السلة">أضف إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube Premium Category -->
+            <div class="category" data-category="youtube">
+                <h3 id="youtube-title">اشتراكات يوتيوب بريميوم</h3>
+                <div class="plan-grid">
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="youtube.jpg" alt="صورة يوتيوب شهر" loading="lazy">
+                            <span class="label" id="youtube-month-label">مميز</span>
+                        </div>
+                        <h4 id="youtube-month-title">عرض شهر</h4>
+                        <p id="youtube-month-desc">يوتيوب بريميوم</p>
+                        <div class="price" data-price-sar="23.99" id="youtube-month-price">23.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('youtube-month', 23.99)" id="youtube-month-btn" aria-label="أضف عرض شهر يوتيوب إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan most-popular">
+                        <div class="image-container">
+                            <img src="youtube.jpg" alt="صورة يوتيوب 3 أشهر" loading="lazy">
+                            <span class="label" id="youtube-3months-label">مميز</span>
+                        </div>
+                        <h4 id="youtube-3months-title">عرض 3 أشهر</h4>
+                        <p id="youtube-3months-desc">يوتيوب بريميوم</p>
+                        <div class="price" data-price-sar="59.99" id="youtube-3months-price">59.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('youtube-3months', 59.99)" id="youtube-3months-btn" aria-label="أضف عرض 3 أشهر يوتيوب إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="youtube.jpg" alt="صورة يوتيوب سنة" loading="lazy">
+                            <span class="label" id="youtube-year-label">مميز</span>
+                        </div>
+                        <h4 id="youtube-year-title">عرض سنة</h4>
+                        <p id="youtube-year-desc">يوتيوب بريميوم</p>
+                        <div class="price" data-price-sar="199.99" id="youtube-year-price">199.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('youtube-year', 199.99)" id="youtube-year-btn" aria-label="أضف عرض سنة يوتيوب إلى السلة">أضف إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bundled Plan Category -->
+            <div class="category" data-category="bundle">
+                <h3 id="bundle-title">الباقات المجمعة</h3>
+                <div class="plan-grid">
+                    <div class="plan most-popular">
+                        <div class="image-container">
+                            <img src="https://via.placeholder.com/300x200?text=باقة+عائلية" alt="صورة باقة عائلية" loading="lazy">
+                            <span class="label" id="bundle-family-label">مميز</span>
+                        </div>
+                        <h4 id="bundle-family-title">باقة عائلية</h4>
+                        <p id="bundle-family-desc">نتفليكس + سبوتيفاي + ديزني+</p>
+                        <div class="price" data-price-sar="79.99" id="bundle-family-price">79.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('bundle-family', 79.99)" id="bundle-family-btn" aria-label="أضف باقة عائلية إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="https://via.placeholder.com/300x200?text=باقة+فاخرة" alt="صورة باقة فاخرة" loading="lazy">
+                            <span class="label" id="bundle-premium-label">مميز</span>
+                        </div>
+                        <h4 id="bundle-premium-title">باقة فاخرة</h4>
+                        <p id="bundle-premium-desc">جميع الخدمات لمدة سنة</p>
+                        <div class="price" data-price-sar="499.99" id="bundle-premium-price">499.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('bundle-premium', 499.99)" id="bundle-premium-btn" aria-label="أضف باقة فاخرة إلى السلة">أضف إلى السلة</button>
+                    </div>
+                    <div class="plan">
+                        <div class="image-container">
+                            <img src="https://via.placeholder.com/300x200?text=باقة+اقتصادية" alt="صورة باقة اقتصادية" loading="lazy">
+                            <span class="label" id="bundle-economy-label">مميز</span>
+                        </div>
+                        <h4 id="bundle-economy-title">باقة اقتصادية</h4>
+                        <p id="bundle-economy-desc">نتفليكس + سبوتيفاي لمدة 3 أشهر</p>
+                        <div class="price" data-price-sar="49.99" id="bundle-economy-price">49.99 ر.س</div>
+                        <button class="plan-btn" onclick="addToCart('bundle-economy', 49.99)" id="bundle-economy-btn" aria-label="أضف باقة اقتصادية إلى السلة">أضف إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials" role="region" aria-labelledby="testimonials-title">
+            <h2 id="testimonials-title">آراء عملائنا</h2>
+            <div class="testimonial-carousel" role="region" aria-label="آراء العملاء">
+                <button class="carousel-nav prev" onclick="scrollTestimonials('prev')" aria-label="المراجعة السابقة">←</button>
+                <div class="testimonial-list">
+                    <article class="testimonial">
+                        <img src="avatar1.jpg" alt="أحمد محمد" class="testimonial-avatar">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p id="testimonial-1-text">"خدمة رائعة! اشتراكات بأسعار تنافسية وتفعيل فوري."</p>
+                            <h4 id="testimonial-1-name">أحمد محمد - الرياض</h4>
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <img src="avatar2.jpg" alt="سارة عبدالله" class="testimonial-avatar">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p id="testimonial-2-text">"الباقة المجمعة وفرت لي الكثير من المال. شكراً Nexa!"</p>
+                            <h4 id="testimonial-2-name">سارة عبدالله - جدة</h4>
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <img src="avatar3.jpg" alt="خالد العتيبي" class="testimonial-avatar">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p id="testimonial-3-text">"دعم العملاء ممتاز، ساعدوني بسرعة في تفعيل اشتراكي."</p>
+                            <h4 id="testimonial-3-name">خالد العتيبي - الدمام</h4>
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <img src="avatar4.jpg" alt="ليلى حسن" class="testimonial-avatar">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p id="testimonial-4-text">"تجربة مستخدم رائعة، الاشتراكات تعمل بسلاسة."</p>
+                            <h4 id="testimonial-4-name">ليلى حسن - القاهرة</h4>
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <img src="avatar5.jpg" alt="محمد علي" class="testimonial-avatar">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p id="testimonial-5-text">"أسعار لا تُضاهى وخدمة سريعة، أنصح بها!"</p>
+                            <h4 id="testimonial-5-name">محمد علي - دبي</h4>
+                        </div>
+                    </article>
+                </div>
+                <button class="carousel-nav next" onclick="scrollTestimonials('next')" aria-label="المراجعة التالية">→</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="whatsapp" role="complementary">
+        <a href="https://wa.me/201142540575" title="تواصلوا معنا عبر واتساب" aria-label="التواصل عبر واتساب">
+            <img src="WhatsApp.jpg" alt="واتساب" class="whatsapp-icon">
+            <span class="whatsapp-tooltip">تواصلوا معنا!</span>
+        </a>
+    </div>
+
+    <footer role="contentinfo">
+        <div class="footer-links">
+            <a href="about.html">عنّا</a>
+            <a href="faq.html">الأسئلة الشائعة</a>
+            <a href="contact.html">اتصل بنا</a>
+            <a href="terms.html">الشروط والأحكام</a>
+        </div>
+        <form class="newsletter" onsubmit="subscribeNewsletter(event)">
+            <input type="email" id="newsletter-email" placeholder="أدخل بريدك الإلكتروني" aria-label="الاشتراك في النشرة الإخبارية" required>
+            <button type="submit" aria-label="الاشتراك في النشرة">اشترك</button>
+        </form>
+        <p id="footer-contact">تواصل معنا: <a href="mailto:morsyahmed835@gmail.com">support@nexa.com</a> | <a href="tel:+201142540575">+201142540575</a></p>
+        <p id="footer-social">تابعنا: <a href="#">فيسبوك</a> | <a href="#">تويتر</a> | <a href="#">إنستغرام</a></p>
+        <p id="footer-copyright">© 2025 Nexa. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal" role="dialog" aria-labelledby="cart-title">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()" aria-label="إغلاق سلة التسوق">×</span>
+            <h2 id="cart-title">سلة التسوق</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total" id="cart-total">المجموع: 0.00 ر.س</div>
+            <button class="modal-btn" onclick="proceedToCheckout()" id="checkout-btn" aria-label="الدفع الآن">الدفع الآن</button>
+            <button class="modal-btn secondary" onclick="clearCart()" id="clear-cart-btn" aria-label="إفراغ السلة">إفراغ السلة</button>
+        </div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="notification-popup" id="notification-popup" role="alert">
+        <div class="notification-content">
+            <p id="notification-message"></p>
+            <button class="notification-btn" onclick="closeNotification()" aria-label="إغلاق الإشعار">موافق</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
